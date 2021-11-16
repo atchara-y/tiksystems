@@ -1,0 +1,7 @@
+.nav-bar-container {
+  height: 100%;
+}
+
+mat-drawer-content.bg-img {
+  background-image: url("/assets/images/bg-image.jpg");
+}

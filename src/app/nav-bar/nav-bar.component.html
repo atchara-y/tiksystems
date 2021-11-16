@@ -1,0 +1,49 @@
+<mat-drawer-container class="nav-bar-container">
+  <mat-drawer mode="side" opened>
+    <mat-nav-list role="navigation">
+      <mat-list role="list">
+        <a
+          mat-list-item
+          role="listitem"
+          [routerLink]="paths.registration"
+          (click)="addLink($event, paths.registration)"
+          >Registration</a
+        >
+        <a
+          mat-list-item
+          role="listitem"
+          [routerLink]="paths.searchUser"
+          (click)="addLink($event, paths.searchUser)"
+          >Search user</a
+        >
+        <a
+          mat-list-item
+          role="listitem"
+          [routerLink]="paths.about"
+          (click)="addLink($event, paths.about)"
+          >About</a
+        >
+      </mat-list>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content [ngClass]="{'bg-img': router.url === paths.main}">
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        *ngFor="let link of links; let index = index"
+        (click)="onTabSelectChange(link)"
+        [active]="activeLink == link"
+      >
+        <span>{{ link }}</span>
+        <mat-icon (click)="removeTab(index)">close</mat-icon>
+      </a>
+    </nav>
+
+    <app-main *ngIf="router.url === paths.main"></app-main>
+    <app-register *ngIf="router.url === paths.registration"></app-register>
+    <app-search-user
+      *ngIf="router.url === paths.searchUser"
+    ></app-search-user>
+    <app-about *ngIf="router.url === paths.about"></app-about>
+  </mat-drawer-content>
+</mat-drawer-container>
